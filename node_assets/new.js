@@ -1,4 +1,6 @@
+/*
 var mongo = require("mongodb");
+
 var mongoose = require("mongoose");
 const { Schema } = mongoose;
 var URL = require("url").URL;
@@ -67,3 +69,4 @@ module.exports = (req, res) => {
     }
   });
 };
+*/
