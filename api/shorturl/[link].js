@@ -45,7 +45,6 @@ module.exports = async (req, res) => {
     const UrlData = mongoose.model("UrlData", urlDataSchema);
     var postedURL = req.body.url;
     //console.log(postedURL);
-
     // replace problem characters
     if (!stringIsAValidUrl(postedURL)) {
       res.json({
@@ -65,12 +64,10 @@ module.exports = async (req, res) => {
         .then(async (data) => {
           let docNum = data.length;
           //console.log(docNum);
-
           var newEntry = new UrlData({
             urlLong: postedURL,
             urlShort: docNum,
           });
-
           let checkUrl = data.filter((url) => url.urlLong === postedURL);
           if (checkUrl.length) {
             //console.log(checkUrl[0]);
