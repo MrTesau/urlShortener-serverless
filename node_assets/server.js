@@ -1,3 +1,4 @@
+/*
 "use strict";
 var express = require("express");
 var mongo = require("mongodb");
@@ -13,7 +14,7 @@ require("dotenv").config();
 // Basic Configuration
 var port = process.env.PORT || 3000;
 
-/** this project needs a db !! **/
+
 // mongoose.connect(process.env.DB_URI);
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -24,7 +25,7 @@ const db = mongoose.connection;
 
 app.use(cors({ optionsSuccessStatus: 200 }));
 
-/** this project needs to parse POST bodies **/
+
 // app.use(express.json());
 // different Parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -120,3 +121,4 @@ db.once("open", () => {
 app.listen(port, function () {
   console.log("Node.js listening ..." + `${port}`);
 });
+*/
