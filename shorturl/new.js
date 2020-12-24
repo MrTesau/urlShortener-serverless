@@ -1,4 +1,3 @@
-/*
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
 const { Schema } = mongoose;
@@ -17,7 +16,6 @@ module.exports = (req, res) => {
   const reg2 = /^http:\/\//;
   const reg3 = /\/$/;
 
-  
   app.post("/api/shorturl/new", (req, res) => {
     console.log(req);
     console.log(req.body.url);
@@ -68,7 +66,4 @@ module.exports = (req, res) => {
       });
     }
   });
-
-
 };
-*/

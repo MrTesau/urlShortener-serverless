@@ -115,20 +115,6 @@ db.once("open", () => {
     }
     //});
   });
-
-  app.get("/api/shorturl/:link", (req, res) => {
-    UrlData.findOne({ urlShort: req.params.link }, (err, data) => {
-      if (err) {
-        res.json({ error: "No shortened URL found" });
-      } else {
-        if (reg1.test(data.urlLong) || reg2.test(data.urlLong)) {
-          res.redirect(data.urlLong);
-        } else {
-          res.redirect("https://" + data.urlLong);
-        }
-      }
-    });
-  });
 });
 
 app.listen(port, function () {

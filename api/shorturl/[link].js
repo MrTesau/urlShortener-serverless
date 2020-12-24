@@ -70,14 +70,14 @@ module.exports = async (req, res) => {
 
           let checkUrl = data.filter((url) => url.urlLong === postedURL);
           if (checkUrl.length) {
-            console.log(checkUrl[0]);
+            //console.log(checkUrl[0]);
             res.json({
               original_url: checkUrl[0].urlLong,
               short_url: checkUrl[0].urlShort,
             });
           } else {
             await collection.insertOne(newEntry).then((data, err) => {
-              console.log(data);
+              //console.log(data);
               if (err) return console.error(err);
               res.json({
                 original_url: data.ops[0].urlLong,
