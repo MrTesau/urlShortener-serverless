@@ -24,6 +24,9 @@ module.exports = async (req, res) => {
           res.redirect("https://" + data[0].urlLong);
         }
       });
+    // Even though :new is a query setup as [link]
+    // You can still acess it via api/shorturl/new as long as its a POST
+    // otherwise it will attempt to GET url
   } else if (req.method === "POST") {
     const stringIsAValidUrl = (str) => {
       try {
@@ -86,31 +89,6 @@ module.exports = async (req, res) => {
             });
           }
         });
-
-      /*
-      /*
-          await collection.find({ urlLong: postedURL }).toArray().then(async (data) => {
-            console.log(data);
-            /*
-              if (data.length) {
-                console.log(returnedData);
-                res.json({
-                  original_url: returnedData[0].urlLong,
-                  short_url: returnedData[0].urlShort,
-                });
-              } /*else {
-                await collection.insertOne(newEntry).then((data) => {
-                  console.log(data);
-                  if (err) return console.error(err);
-                  res.json({
-                    original_url: data.urlLong,
-                    short_url: data.urlShort,
-                  });
-                });
-              }
-              */
-      // });
-      // });
     }
   }
 };
