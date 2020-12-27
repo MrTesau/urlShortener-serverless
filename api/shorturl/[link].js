@@ -3,6 +3,10 @@ var URL = require("url").URL;
 var mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+// wrapper function
+// vercel.json
+// database uri env retrieval
+
 // To allow cors the handler function for route must be wrapped in a cors function
 const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
