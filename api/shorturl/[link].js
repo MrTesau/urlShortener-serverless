@@ -3,7 +3,22 @@ var URL = require("url").URL;
 var mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-module.exports = async (req, res) => {
+// To allow cors the handler function for route must be wrapped in a cors function
+const allowCors = (fn) => async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  );
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+  return await fn(req, res);
+};
+const handler = async (req, res) => {
   if (req.method === "GET") {
     const reg1 = /^https:\/\//;
     const reg2 = /^http:\/\//;
@@ -46,6 +61,7 @@ module.exports = async (req, res) => {
     var postedURL = req.body.url;
     //console.log(postedURL);
     // replace problem characters
+
     if (!stringIsAValidUrl(postedURL)) {
       res.json({
         error: "invalid url",
@@ -89,3 +105,5 @@ module.exports = async (req, res) => {
     }
   }
 };
+
+module.exports = allowCors(handler);
